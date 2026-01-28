@@ -1,0 +1,21 @@
+# WordPress Development Environment
+
+# Database backup (contains potentially sensitive data)
+.devcontainer/db-backup.sql
+
+# WordPress config (contains credentials)
+wp-config.php
+
+# Debug log
+wp-content/debug.log
+
+# Uploads (optional - uncomment if you want to ignore uploads)
+# wp-content/uploads/
+
+# IDE/Editor files
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

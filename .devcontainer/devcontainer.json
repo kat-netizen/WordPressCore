@@ -1,0 +1,31 @@
+{
+    "name": "WordPress LAMP Stack",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "features": {
+        "ghcr.io/devcontainers/features/php:1": {
+            "version": "8.3",
+            "installComposer": true
+        },
+        "ghcr.io/devcontainers-extra/features/mysql-mariadb:1": {
+            "mariadbVersion": "10.11"
+        }
+    },
+    "forwardPorts": [8080],
+    "portsAttributes": {
+        "8080": {
+            "label": "WordPress",
+            "onAutoForward": "notify",
+            "visibility": "public"
+        }
+    },
+    "postCreateCommand": "bash .devcontainer/setup.sh",
+    "postStartCommand": "sudo service mariadb start && sudo service apache2 start",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bmewburn.vscode-intelephense-client",
+                "xdebug.php-debug"
+            ]
+        }
+    }
+}
