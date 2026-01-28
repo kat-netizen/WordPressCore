@@ -26,11 +26,25 @@ sudo mariadb -e "CREATE USER IF NOT EXISTS 'wordpress'@'localhost' IDENTIFIED BY
 sudo mariadb -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost';"
 sudo mariadb -e "FLUSH PRIVILEGES;"
 
+# Add shell aliases for wp-start and wp-stop
+echo "Adding shell aliases..."
+if ! grep -q "alias wp-start" ~/.bashrc 2>/dev/null; then
+    echo "" >> ~/.bashrc
+    echo "# WordPress development aliases" >> ~/.bashrc
+    echo "alias wp-start='bash /workspaces/WordPressCore/.devcontainer/start-wordpress.sh'" >> ~/.bashrc
+    echo "alias wp-stop='bash /workspaces/WordPressCore/.devcontainer/stop-wordpress.sh'" >> ~/.bashrc
+fi
+
 echo ""
 echo "=== Setup Complete ==="
 echo ""
-echo "To start WordPress, run:"
-echo "  php -S localhost:8080 -t /workspaces/WordPressCore"
+echo "To start WordPress:"
+echo "  Option 1: Run 'wp-start' in terminal"
+echo "  Option 2: Press Ctrl+Shift+B (runs 'Start WordPress' task)"
+echo ""
+echo "To stop WordPress:"
+echo "  Option 1: Run 'wp-stop' in terminal"
+echo "  Option 2: Press Ctrl+C in the PHP server terminal"
 echo ""
 echo "Database credentials:"
 echo "  Database: wordpress"
